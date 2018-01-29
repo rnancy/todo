@@ -23,6 +23,8 @@ class Project(Base):
     description = Column(String(250), nullable=False)
     deadline = Column(Date, nullable=False)
 
+    tasks = relationship('Task', backref='project')
+
     def __repr__(self):
         return "<Project (name='%s', description='%s', deadline='%s')>" % (
         self.name, self.description, self.deadline)
@@ -38,7 +40,7 @@ class Task(Base):
     project_name = Column(String(30), ForeignKey('project.name'), nullable = False)
     sqlite_autoincrement=True
 
-    project = relationship(Project)
+   # project = relationship(Project)
 
     def __repr__(self):
         return '''<Task (id='%d', priority='%d', status='%s', details='%s',
