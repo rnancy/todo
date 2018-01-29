@@ -67,6 +67,48 @@ def _add_task(parser):
     parser.add_argument('--priority', type=int, help=help)
 
 
+def _add(parser, addproject, addtask):
+    ''''
+    Add Task and Project specifier to the parser
+    '''
+    # Add sub-comands
+    help = 'Add a project or a task'
+    subparsers = parser.add_subparsers(help=help)
+     
+    # Add sub-command project
+    help = 'Add a project'
+    parser_project = subparsers.add_parser('project', help=help)
+
+    help = 'project name'
+    parser_project.add_argument('--name',  type=str, help=help)
+
+    help = 'project description'
+    parser_project.add_argument('--desc',  type=str, help=help)
+
+    help = 'the project deadline'
+    parser_project.add_argument('--deadline', type=misc.date, help=help)
+    parser_project.set_defaults(callback=addproject)
+
+    # Add subcommand task
+    parser_task = subparsers.add_parser('task', help=help)
+
+    help = 'project name'
+    parser_task.add_argument('--project',  type=str, help=help)
+    
+    help = 'task detail'
+    parser_task.add_argument('--detail',  type=str, help=help)
+
+    help = 'task status'
+    parser_task.add_argument('--status',  type=str, help=help)
+
+    help = 'the task deadline'
+    parser_task.add_argument('--deadline', type=misc.date, help=help)
+
+    help = 'task priority'
+    parser_task.add_argument('--priority', type=int, help=help)
+    parser_task.set_defaults(callback=addtask)
+
+     
 def _delete(parser):
     '''
     '''

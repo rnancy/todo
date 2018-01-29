@@ -34,6 +34,7 @@ setup(
         'console_scripts': [
             'todo.add_project = pytodo.apps.add_project:main',
             'todo.add_task = pytodo.apps.add_task:main',
+            'todo.add = pytodo.apps.add:main',
             'todo.list = pytodo.apps.list:main',
             'todo.delete = pytodo.apps.delete:main',
         ],
